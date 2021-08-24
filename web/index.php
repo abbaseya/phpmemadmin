@@ -87,6 +87,11 @@ $config = json_decode(
     file_get_contents($config)
 );
 
+$config->username = getenv('MEMCACHED_USERNAME');
+$config->password = getenv('MEMCACHED_PASSWORD');
+$config->cluster->hosts[0]->host = getenv('MEMCACHED_HOST');
+$config->cluster->hosts[0]->port = getenv('MEMCACHED_PORT');
+
 /**
  * Init the applications core ...
  */

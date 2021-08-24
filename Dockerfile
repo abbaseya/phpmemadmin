@@ -4,7 +4,8 @@ ENV MEMCACHED_HOST "127.0.0.1"
 ENV MEMCACHED_PORT "11211"
 ENV MEMCACHED_USERNAME "admin"
 ENV MEMCACHED_PASSWORD "pass"
-ENV APACHE_DOCUMENT_ROOT "/var/www/html"
+ENV APP_DIR "/var/www/html"
+ENV APACHE_DOCUMENT_ROOT "$APP_DIR/web"
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN mkdir -p $APACHE_DOCUMENT_ROOT
@@ -31,17 +32,13 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 # basic extensions:
 RUN install-php-extensions zip
 
-WORKDIR $APACHE_DOCUMENT_ROOT
+WORKDIR $APP_DIR
 
 COPY . .
 
 # configure app
-RUN sed -i 's/127.0.0.1/${MEMCACHED_HOST}/g' app/.config.dist \
-    && sed -i 's/11211/${MEMCACHED_PORT}/g' app/.config.dist \
-    && sed -i 's/admin/${MEMCACHED_USERNAME}/g' app/.config.dist \
-    && sed -i 's/pass/${MEMCACHED_PASSWORD}/g' app/.config.dist \
-    && mv app/.config.dist app/.config \
-    && chown -R root:root "${APACHE_DOCUMENT_ROOT}"
+RUN mv app/.config.dist app/.config \
+    && chown -R root:root "${APP_DIR}"
 
 # install composer:
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer

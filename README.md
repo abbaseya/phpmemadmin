@@ -58,7 +58,7 @@ Use public image: `docker pull ghcr.io/abbaseya/phpmemadmin:latest` with the fol
 2. MEMCACHED_HOST: default value `127.0.0.1`
 3. MEMCACHED_PORT: default value `11211`
 4. MEMCACHED_USERNAME: default value `admin`
-5. MEMCACHED_PASSWORD: defaulr value `pass`
+5. MEMCACHED_PASSWORD: default value `pass`
 
 ## Installation
 The recommended way to install this tool is through [Composer](http://getcomposer.org/). Require the `clickalicious/phpmemadmin` package into your `composer.json` file:

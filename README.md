@@ -16,6 +16,7 @@ Bringing `Memcached` to the web
 - [Features](#features)
 - [Requirements](#requirements)
 - [Philosophy](#philosophy)
+- [Docker](#docker)
 - [Installation](#installation)
 - [Screenshots](#screenshots)
 - [Documentation](#documentation) 
@@ -48,6 +49,16 @@ This software is currently in early alpha state and so i want to warn - There is
 ## Philosophy
 
 `phpMemAdmin` was designed as helper while developing a cache in PHP using Memcached as in memory store. I had a need for a tool which displays me modified data stored in Memcached for example. The existing tools did not provide a UI i would describe as usable so i wrote my own. Trying to align it with the `PECL` Memcached extension.
+
+## Docker
+
+Use public image: `docker pull ghcr.io/abbaseya/phpmemadmin:latest` with the following environment variables:
+
+1. PORT: default value `80`
+2. MEMCACHED_HOST: default value `127.0.0.1`
+3. MEMCACHED_PORT: default value `11211`
+4. MEMCACHED_USERNAME: default value `admin`
+5. MEMCACHED_PASSWORD: defaulr value `pass`
 
 ## Installation
 The recommended way to install this tool is through [Composer](http://getcomposer.org/). Require the `clickalicious/phpmemadmin` package into your `composer.json` file:
